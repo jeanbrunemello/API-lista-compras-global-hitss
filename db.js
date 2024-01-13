@@ -1,31 +1,40 @@
-const { Pool } = require('pg');
-const env = require('dotenv').config();
+const Sequelize = require('sequelize');
+const dbConfig = require('./config/config.json')
 
-async function connect() {
-    try {
+const bancoDev = dbConfig.development
+const sequelize = new Sequelize(bancoDev)
 
-        if (global.connection) return global.connection.connect();
+module.exports = sequelize;
 
-        const pool = new Pool({
-            connectionString: process.env.CONNECTION_STRING
-        });
+// const { Pool } = require('pg');
+// const env = require('dotenv').config();
 
-        const client = await pool.connect();
+// async function connect() {
+//     try {
 
-        const testeConexao = await client.query('select now()')
+//         if (global.connection) return global.connection.connect();
 
-        console.log(`Conexão com o banco iniciado em ${testeConexao.rows[0].now}`)
+//         const pool = new Pool({
+//             connectionString: process.env.CONNECTION_STRING
+//         });
 
-        client.release();
+//         const client = await pool.connect();
 
-        global.conection = pool;
-        return pool.connect();
+//         const testeConexao = await client.query('select now()')
 
-    } catch (erro) {
-        console.error(`Erro ao conectar ao banco de dados: ${erro}`);
-    }
-}
+//         console.log(`Conexão com o banco iniciado em ${testeConexao.rows[0].now}`)
 
-connect();
+//         client.release();
 
-module.exports = { connect };
+//         global.conection = pool;
+//         return pool.connect();
+
+//     } catch (erro) {
+//         console.error(`Erro ao conectar ao banco de dados: ${erro}`);
+//     }
+// }
+
+// connect();
+
+// module.exports = { connect };
+

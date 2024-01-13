@@ -1,6 +1,5 @@
-const dotenv = require('dotenv') //lib de gerenciamento de variavel de ambiente
 const express = require('express') //ORM
-const db = require('./db');
+const database = require('./db');
 
 //controllers
 const listaController = require('./src/Controllers/listasController')
@@ -8,19 +7,18 @@ const listaController = require('./src/Controllers/listasController')
 //rotas
 const listasRoutes = require('./src/Routes/listasRoutes')
 
-//const ambiente = dotenv.config()
-const port = process.env.PORT;
-
 
 const app = express();
 app.use(express.json());
 
+const port = 3000;
 app.use('/listas', listasRoutes)
 // app.use('/login', loginRoutes)
 // app.use('/produtos', produtosRoutes)
 
-app.listen(port)
-console.log(`backend rodando na porta ${port}`)
+app.listen(port, () => {
+    console.log(`backend rodando na porta ${port}`)
+})
 
 
 

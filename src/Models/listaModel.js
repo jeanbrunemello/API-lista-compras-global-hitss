@@ -1,10 +1,18 @@
 const { DataTypes } = require("sequelize");
-const { sequelize } = require("../../models");
+const Sequelize = require('sequelize');
+const database = require('../../db')
 
-const listaModel = (sequelize, DataTypes) => {
-    return sequelize.define('listas_compras', {
-        nome_lista: DataTypes.STRING,
-    })
-}
+const listaModel = database.define('listas_compras', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+    },
+    nome_lista: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
+});
 
 module.exports = listaModel
