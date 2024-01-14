@@ -1,9 +1,9 @@
-const listasRepository = require('./listasComprasRepository')
-const produtosRepository = require('./produtosRepository')
+const listasRepository = require('./ListasComprasRepository')
+const produtosRepository = require('./ProdutoRepository')
 const usuariosRepository = require('./usuariosRepository')
 
 module.exports = {
 listas: listasRepository,
-produtos: produtosRepository,
-usuarios: usuariosRepository
+produto: produtosRepository,
+usuario: usuariosRepository
 }

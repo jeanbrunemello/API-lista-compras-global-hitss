@@ -6,7 +6,7 @@ class ListasComprasRepository {
     async buscarListas(){
         try {
             await database.sync();
-            const listas = await models.lista.findAll();
+            const listas = await models.ListaCompras.findAll();
             console.log(listas)
             return listas;
         } catch (erro) {
@@ -17,17 +17,17 @@ class ListasComprasRepository {
     async buscarListaPorId(id) {
         try {
             await database.sync();
-            const listaPorId = await models.lista.findByPk(id);
+            const listaPorId = await models.ListaCompras.findByPk(id);
             return listaPorId;
         } catch (erro) {
             console.error(erro)
         }
     }
 
-    async criarLista(lista) {
+    async cadastrarLista(lista) {
         try {
             await database.sync();
-            const novaLista = await models.lista.create(lista)
+            const novaLista = await models.ListaCompras.create(lista)
             //return novaLista
         } catch (err) {
             console.error(`erro ao tentar cadastrar lista: ${err}`);
@@ -37,7 +37,7 @@ class ListasComprasRepository {
     async editarLista(id, lista) {
         try {
             await database.sync();
-            const listaById = await models.lista.findByPk(id);
+            const listaById = await models.ListaCompras.findByPk(id);
             await listaById.update(lista)
         } catch (err) {
             console.error(`erro ao tentar editar lista: ${err}`);
@@ -47,7 +47,7 @@ class ListasComprasRepository {
     async apagarLista(id) {
         try {
             await database.sync();
-            const listaById = await models.lista.findByPk(id);
+            const listaById = await models.ListaCompras.findByPk(id);
             listaById.destroy();
             return 'apagado com sucesso'
         } catch (err) {

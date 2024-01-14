@@ -1,28 +1,27 @@
-const db = require('../../db');
 const repositories = require('../Repository')
 
 class ListasService {
-    async getAllListas() {
+    async buscarListas() {
         const listas = await repositories.listas.buscarListas();
         return listas;
     }
 
-    async getListaById(id) {
+    async buscarListaPorId(id) {
         const lista = await repositories.listas.buscarListaPorId(id);
         return lista;
     }
 
-    async criaLista(requestBody) {
-        const lista = await repositories.listas.criarLista(requestBody);
+    async cadastrarLista(requestBody) {
+        const lista = await repositories.listas.cadastrarLista(requestBody);
         return lista;
     }
 
-    async editaLista(id, requestBody) {
+    async editarLista(id, requestBody) {
         const listas = await repositories.listas.editarLista(id, requestBody);
         return listas;
     }
 
-    async apagaLista(id) {
+    async apagarLista(id) {
         const listas = await repositories.listas.apagarLista(id);
         return listas;
     }

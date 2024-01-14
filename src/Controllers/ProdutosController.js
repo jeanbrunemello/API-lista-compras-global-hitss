@@ -2,53 +2,51 @@ const express = require('express')
 const services = require('../Services/index')
 const router = express.Router();
 
-class ListasComprasController {
+class ProdutosController {
 
-    async buscarListas(request, response) {
+    async buscarProdutos(request, response) {
         try {
-            const listas = await services.listas.buscarListas();
-            response.json(listas)
+            const produtos = await services.produto.buscarProdutos();
+            response.json(produtos)
         } catch (err) {
             console.error(err)
         }
     };
 
-    async buscarListaPorId(request, response) {
+    async buscarProdutoPorId(request, response) {
         try {
             const id = request.params.id;
-            const lista = await await services.listas.buscarListaPorId(id);
-            response.json(lista)
+            const produto = await services.produto.buscarProdutoPorId(id);
+            response.json(produto)
         } catch (err) {
             console.error(err)
         }
     };
 
-
-    async cadastrarLista(request, response) {
+    async criarProduto(request, response) {
         try {
-            const lista = await services.listas.cadastrarLista(request.body);
+            const produto = await services.produto.cadastrarProduto(request.body);
             response.sendStatus(201);
-            response.json(lista);
+            response.json(produto);
         } catch (err) {
             console.error(err)
         }
-
     };
 
-    async editarLista(request, response) {
+    async editarProduto(request, response) {
         try {
             const id = request.params.id;
-            const lista = await services.listas.editarLista(id, request.body);
+            const produto = await services.produto.editarProduto(id, request.body);
             response.sendStatus(200);
         } catch (err) {
             console.error(err)
         }
     };
 
-    async apagarLista(request, response) {
+    async apagarProduto(request, response) {
         try {
             const id = request.params.id;
-            const lista = await services.listas.apagarLista(id);
+            const produto = await services.produto.apagarProduto(id);
             response.sendStatus(204);
         } catch (err) {
             console.error(err)
@@ -56,4 +54,4 @@ class ListasComprasController {
     }
 }
 
-module.exports = new ListasComprasController();
+module.exports = new ProdutosController();

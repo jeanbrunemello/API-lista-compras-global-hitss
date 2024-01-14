@@ -12,8 +12,8 @@ app.use(express.json());
 
 const port = 3000;
 app.use('/listas', rotas.listas)
-// app.use('/login', loginRoutes)
-// app.use('/produtos', produtosRoutes)
+// app.use('/login', rotas.login)
+app.use('/produtos', rotas.produtos)
 
 app.listen(port, () => {
     console.log(`backend rodando na porta ${port}`)
