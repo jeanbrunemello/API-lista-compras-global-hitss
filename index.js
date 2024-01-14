@@ -1,18 +1,17 @@
 const express = require('express') //ORM
 const database = require('./db');
 
-//controllers
-const listaController = require('./src/Controllers/listasController')
 
 //rotas
-const listasRoutes = require('./src/Routes/listasRoutes')
+//const listasRoutes = require('./src/Routes/listasRoutes')
+const rotas = require('./src/Routes/index')
 
 
 const app = express();
 app.use(express.json());
 
 const port = 3000;
-app.use('/listas', listasRoutes)
+app.use('/listas', rotas.listaRotas)
 // app.use('/login', loginRoutes)
 // app.use('/produtos', produtosRoutes)
 

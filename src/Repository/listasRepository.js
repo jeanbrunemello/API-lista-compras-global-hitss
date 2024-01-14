@@ -1,11 +1,13 @@
 const database = require('../../db')
-const listaCompras = require('../Models/listaModel')
+//const listaCompras = require('../Models/listaModel')
+const models = require('../Models/index')
 
 async function selecionarListas() {
 
     try {
         await database.sync();
-        const selectListas = await listaCompras.findAll();
+        //const selectListas = await listaCompras.findAll();
+        const selectListas = await models.listaModel.findAll();
         console.log(selectListas)
         return selectListas;
     } catch (erro) {
@@ -16,7 +18,7 @@ async function selecionarListas() {
 async function selecionarListaById(id) {
     try {
         await database.sync();
-        const listaById = await listaCompras.findByPk(id);
+        const listaById = await models.listaModel.findByPk(id);
         return listaById;
     } catch (erro) {
         console.error(erro)
@@ -26,7 +28,7 @@ async function selecionarListaById(id) {
 async function criarLista(lista) {
     try {
         await database.sync();
-        const novaLista = await listaCompras.create(lista)
+        const novaLista = await models.listaModel.create(lista)
         //return novaLista
     } catch (err) {
         console.error(`erro ao tentar cadastrar lista: ${err}`);
@@ -36,7 +38,7 @@ async function criarLista(lista) {
 async function editarLista(id, lista) {
     try {
         await database.sync();
-        const listaById = await listaCompras.findByPk(id);
+        const listaById = await models.listaModel.findByPk(id);
         await listaById.update(lista)
     } catch (err) {
         console.error(`erro ao tentar editar lista: ${err}`);
@@ -46,7 +48,7 @@ async function editarLista(id, lista) {
 async function apagarLista(id) {
     try {
         await database.sync();
-        const listaById = await listaCompras.findByPk(id);
+        const listaById = await models.listaModel.findByPk(id);
         listaById.destroy();
         return 'apagado com sucesso'
     } catch (err) {
