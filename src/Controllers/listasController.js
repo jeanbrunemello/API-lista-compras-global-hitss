@@ -1,21 +1,20 @@
 const express = require('express')
-//const { getAllListas, getListaById, criaLista, editaLista, apagaLista } = require('../Services/listasService');
 const services = require('../Services/index')
 const router = express.Router();
 
-async function getAllListas(request, response) {
+async function buscaTodasListas(request, response) {
     console.log(response)
     try {
-        const listas = await services.listaService.getAllListas();
+        const listas = await services.listas.getAllListas();
         response.json(listas)
     } catch (err) {
         console.error(err)
     }
 };
 
-async function getListaById (request, response) {
+async function buscaListaPorId (request, response) {
     const id = request.params.id;
-    const lista = await await services.listaService.getListaById(id);
+    const lista = await await services.listas.getListaById(id);
     response.json(lista)
 };
 
@@ -23,7 +22,7 @@ async function getListaById (request, response) {
 async function criaLista(request, response) {
 
     try {
-        const lista = await services.listaService.criaLista(request.body);
+        const lista = await services.listas.criaLista(request.body);
         response.sendStatus(201);
         response.json(lista);
     } catch (err) {
@@ -36,7 +35,7 @@ async function editaLista (request, response) {
 
     try {
         const id = request.params.id;
-        const lista = await services.listaService.editaLista(id, request.body);
+        const lista = await services.listas.editaLista(id, request.body);
         response.sendStatus(200);
     } catch (err) {
         console.error(err)
@@ -47,7 +46,7 @@ async function editaLista (request, response) {
 async function apagaLista (request, response) {
     try {
         const id = request.params.id;
-        const lista = await services.listaService.apagaLista(id);
+        const lista = await services.listas.apagaLista(id);
         response.sendStatus(204);
     } catch (err) {
         console.error(err)
@@ -56,8 +55,8 @@ async function apagaLista (request, response) {
 }
 
 module.exports = {
-    getAllListas,
-    getListaById,
+    buscaTodasListas,
+    buscaListaPorId,
     criaLista,
     editaLista,
     apagaLista

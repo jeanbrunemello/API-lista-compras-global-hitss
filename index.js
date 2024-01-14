@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 const port = 3000;
-app.use('/listas', rotas.listaRotas)
+app.use('/listas', rotas.listas)
 // app.use('/login', loginRoutes)
 // app.use('/produtos', produtosRoutes)
 

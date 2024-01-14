@@ -1,25 +1,23 @@
 const database = require('../../db')
-//const listaCompras = require('../Models/listaModel')
 const models = require('../Models/index')
 
-async function selecionarListas() {
+async function buscarListas() {
 
     try {
         await database.sync();
-        //const selectListas = await listaCompras.findAll();
-        const selectListas = await models.listaModel.findAll();
-        console.log(selectListas)
-        return selectListas;
+        const listas = await models.lista.findAll();
+        console.log(listas)
+        return listas;
     } catch (erro) {
         console.error(erro)
     }
 }
 
-async function selecionarListaById(id) {
+async function buscarListaPorId(id) {
     try {
         await database.sync();
-        const listaById = await models.listaModel.findByPk(id);
-        return listaById;
+        const listaPorId = await models.lista.findByPk(id);
+        return listaPorId;
     } catch (erro) {
         console.error(erro)
     }
@@ -28,7 +26,7 @@ async function selecionarListaById(id) {
 async function criarLista(lista) {
     try {
         await database.sync();
-        const novaLista = await models.listaModel.create(lista)
+        const novaLista = await models.lista.create(lista)
         //return novaLista
     } catch (err) {
         console.error(`erro ao tentar cadastrar lista: ${err}`);
@@ -38,7 +36,7 @@ async function criarLista(lista) {
 async function editarLista(id, lista) {
     try {
         await database.sync();
-        const listaById = await models.listaModel.findByPk(id);
+        const listaById = await models.lista.findByPk(id);
         await listaById.update(lista)
     } catch (err) {
         console.error(`erro ao tentar editar lista: ${err}`);
@@ -48,7 +46,7 @@ async function editarLista(id, lista) {
 async function apagarLista(id) {
     try {
         await database.sync();
-        const listaById = await models.listaModel.findByPk(id);
+        const listaById = await models.lista.findByPk(id);
         listaById.destroy();
         return 'apagado com sucesso'
     } catch (err) {
@@ -111,8 +109,8 @@ async function apagarLista(id) {
 // }
 
 module.exports = {
-    selecionarListas: selecionarListas,
-    selecionarListaById: selecionarListaById,
+    selecionarListas: buscarListas,
+    selecionarListaById: buscarListaPorId,
     criarLista: criarLista,
     editarLista: editarLista,
     apagarLista: apagarLista

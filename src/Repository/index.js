@@ -3,7 +3,7 @@ const produtosRepository = require('./produtosRepository')
 const usuariosRepository = require('./usuariosRepository')
 
 module.exports = {
-listasRepository: listasRepository,
-produtosRepository: produtosRepository,
-usuariosRepository: usuariosRepository
+listas: listasRepository,
+produtos: produtosRepository,
+usuarios: usuariosRepository
 }
