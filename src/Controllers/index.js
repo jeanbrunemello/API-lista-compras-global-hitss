@@ -1,5 +1,5 @@
-const listaController = require('./listasComprasController');
+const listasComprasController = require('./listasComprasController');
 
 module.exports = {
-    listas: listaController,
+    listas: listasComprasController,
 }

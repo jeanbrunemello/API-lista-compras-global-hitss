@@ -1,5 +1,5 @@
-const listaRotas = require('./listasComprasRoutes');
+const listaSRotas = require('./listasComprasRoutes');
 
 module.exports = {
-listas: listaRotas
+listas: listaSRotas
 }
