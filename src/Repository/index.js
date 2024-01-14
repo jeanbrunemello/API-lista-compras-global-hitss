@@ -1,4 +1,4 @@
-const listasRepository = require('./listasRepository')
+const listasRepository = require('./listasComprasRepository')
 const produtosRepository = require('./produtosRepository')
 const usuariosRepository = require('./usuariosRepository')
 

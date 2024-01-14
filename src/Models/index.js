@@ -1,4 +1,4 @@
-const listaModel = require('./listaModel');
+const listaModel = require('./listaComprasModel');
 
 module.exports = {
     lista: listaModel
