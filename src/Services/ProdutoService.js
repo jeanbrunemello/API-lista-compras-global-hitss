@@ -6,9 +6,14 @@ class ProdutoService {
         return produtos;
     }
 
+    async buscarProdutosPorListaId(id) {
+        const produtos = await repositories.produto.buscarProdutosPorListaId(id);
+        return produtos;
+    }
+
     async buscarProdutoPorId(id) {
-        const produto = await repositories.produto.buscarProdutoPorId(id);
-        return produto;
+        const produto = await repositories.produto.buscarProdutoPorId(id)
+        return produto
     }
 
     async cadastrarProduto(requestBody) {

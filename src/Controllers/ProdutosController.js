@@ -13,6 +13,16 @@ class ProdutosController {
         }
     };
 
+    async buscarProdutosPorListaId(request, response) {
+        try {
+            const id = request.params.id;
+            const produtos = await services.produto.buscarProdutosPorListaId(id);
+            response.json(produtos)
+        } catch (err) {
+            console.error(err)
+        }
+    };
+
     async buscarProdutoPorId(request, response) {
         try {
             const id = request.params.id;

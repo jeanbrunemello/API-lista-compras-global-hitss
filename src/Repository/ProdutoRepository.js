@@ -14,7 +14,7 @@ class ProdutoRepository {
         }
     }
 
-    async buscarProdutoPorId(id) {
+    async buscarProdutosPorListaId(id) {
         try {
             await database.sync();
             const produtoPorId = await models.Produto.findAll({where: { listas_compras_id: id}});
@@ -24,10 +24,10 @@ class ProdutoRepository {
         }
     }
 
-    async buscarProdutosPorListaId(listaId) {
+    async buscarProdutoPorId(id) {
         try {
             await database.sync();
-            const produtoPorId = await models.Produto.findByPk(listaId);
+            const produtoPorId = await models.Produto.findByPk(id);
             return produtoPorId;
         } catch (erro) {
             console.error(erro)
