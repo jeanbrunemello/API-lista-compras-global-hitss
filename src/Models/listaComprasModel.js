@@ -15,6 +15,10 @@ ListaCompras.init(
         nome_lista: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        usuario_lista: {
+            type: Sequelize.INTEGER,
+            allowNull: false
         }
     },
     {

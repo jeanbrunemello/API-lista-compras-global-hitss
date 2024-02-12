@@ -21,6 +21,10 @@ Produto.init(
         preco_produto: {
             type: Sequelize.DECIMAL,
         },
+        obtido_produto: {
+            type:Sequelize.BOOLEAN,
+            allowNull: false,
+        },
         listas_compras_id: {
             type: Sequelize.INTEGER,
             references: {

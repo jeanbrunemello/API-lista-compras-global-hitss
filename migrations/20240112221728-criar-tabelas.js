@@ -44,6 +44,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      usuario_lista: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'usuarios',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -73,9 +81,16 @@ module.exports = {
       },
       quantidade_produto: {
         type: Sequelize.INTEGER,
+        defaultValue: 1
       },
       preco_produto: {
         type: Sequelize.DECIMAL,
+        defaultValue: 0.00
+      },
+      obtido_produto: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
       listas_compras_id: {
         type: Sequelize.INTEGER,
@@ -111,6 +126,18 @@ module.exports = {
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
+    });
+
+    await queryInterface.addConstraint('listas_compras', {
+      fields: ['usuario_lista'],
+      type: 'foreign key',
+      name: 'fk_listas_compras_usuarios',
+      references: {
+        table: 'usuarios',
+        field: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
     });
   },
 
