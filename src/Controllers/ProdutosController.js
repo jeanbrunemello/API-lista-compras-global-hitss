@@ -7,9 +7,13 @@ class ProdutosController {
     async buscarProdutos(request, response) {
         try {
             const produtos = await services.produto.buscarProdutos();
-            response.json(produtos)
+            if (produtos.length == 0 || produtos == null) {
+                return response.status(404).json({ message: 'nenhum produto encontrado' })
+            }
+            response.status(200).json(produtos)
         } catch (err) {
             console.error(err)
+            return response.status(500).json({ message: 'não foi possível buscar os produtos' })
         }
     };
 
@@ -17,9 +21,13 @@ class ProdutosController {
         try {
             const id = request.params.id;
             const produtos = await services.produto.buscarProdutosPorListaId(id);
-            response.json(produtos)
+            if (produtos.length == 0 || produtos == null) {
+                return response.status(404).json({ message: 'nenhum produto encontrado nessa lista' })
+            }
+            return response.status(200).json(produtos)
         } catch (err) {
             console.error(err)
+            return response.status(500).json({ message: "erro ao buscar produtos da lista" })
         }
     };
 
@@ -27,19 +35,23 @@ class ProdutosController {
         try {
             const id = request.params.id;
             const produto = await services.produto.buscarProdutoPorId(id);
-            response.json(produto)
+            if (produto.length == 0 || produto == null) {
+                return response.status(404).json({ message: 'produto não encontrado' })
+            }
+            return response.status(200).json(produto)
         } catch (err) {
             console.error(err)
+            return response.status(500).json({ message: "erro ao buscar produto" })
         }
     };
 
     async criarProduto(request, response) {
         try {
             const produto = await services.produto.cadastrarProduto(request.body);
-            response.sendStatus(201);
-            response.json(produto);
+            return response.status(201).json(produto);
         } catch (err) {
             console.error(err)
+            return response.status(500).json({ message: "erro ao cadastrar produto" })
         }
     };
 
@@ -47,9 +59,13 @@ class ProdutosController {
         try {
             const id = request.params.id;
             const produto = await services.produto.editarProduto(id, request.body);
-            response.sendStatus(200);
+            if (produto.length == 0 || produto == null) {
+                return response.status(404).json({ message: 'produto não encontrado' })
+            }
+            return response.status(200).json(produto);
         } catch (err) {
             console.error(err)
+            return response.status(500).json({ message: "erro ao editar produto" })
         }
     };
 
@@ -57,9 +73,13 @@ class ProdutosController {
         try {
             const id = request.params.id;
             const produto = await services.produto.apagarProduto(id);
-            response.sendStatus(204);
+            if (produto.length == 0 || produto == null) {
+                return response.status(404).json({ message: 'produto não encontrado' })
+            }
+            return response.status(204).end();
         } catch (err) {
             console.error(err)
+            return response.status(500).json({ message: "erro ao apagar produto" })
         }
     }
 }
